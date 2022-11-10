@@ -31,6 +31,13 @@
 </template>
 
 <script>
+import Auth from '@/apis/auth'
+
+Auth.getInfo()
+  .then(data => {
+    console.log(data)
+  })
+
 export default {
   name: 'Login',
   data() {
@@ -78,6 +85,14 @@ export default {
       this.register.isError = false
       this.register.notice = ''
       console.log(`start register..., username: ${this.register.username}, password: ${this.register.password}`)
+      
+      Auth.register({
+        username: this.register.username,
+        password: this.register.password
+      }).then(data => {
+        console.log(data)
+      })
+
     },
     onLogin() {
       
@@ -95,9 +110,13 @@ export default {
       this.login.isError = false
       this.login.notice = ''
       console.log(`start login..., username: ${this.login.username}, password: ${this.login.password}`)
+      Auth.login({
+        username: this.login.username, 
+        password: this.login.password
+      }).then(data => {
+        console.log(data)
+      })
     },
-    
-    
   }
 }
 </script>
@@ -133,7 +152,7 @@ export default {
 
   .main {
     flex: 1;
-    background: #36bc64 url(//cloud.hunger-valley.com/17-12-13/38476998.jpg-middle) center center no-repeat;
+    background: #36bc64 url(//static.xiedaimala.com/xdml/image/69d724c6-346b-483a-b76e-ddc7c9741985/MjAyMi0xMS0xMC0xMi0xMS0yMy0yOTU=.jpg-middle) center center no-repeat;
     background-size: contain;
   }
 
